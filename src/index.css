@@ -1,0 +1,393 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+/* ============================================
+   CONFIGURACIÓN BASE
+   ============================================ */
+
+@layer base {
+  body {
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  h1, h2, h3, .cursive {
+    font-family: 'Dancing Script', cursive;
+  }
+}
+
+/* ============================================
+   ANIMACIONES PRINCIPALES
+   ============================================ */
+
+@keyframes floatHeart {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(236, 72, 153, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(236, 72, 153, 0.6);
+  }
+}
+
+@keyframes writeText {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes gradientShift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes bounceSoft {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes spinSlow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pingSlow {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.3;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.1;
+  }
+}
+
+/* ============================================
+   CLASES UTILITARIAS
+   ============================================ */
+
+.animate-float-heart {
+  animation: floatHeart 4s linear infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 2s ease-in-out infinite;
+}
+
+.animate-gradient {
+  animation: gradientShift 2.5s ease infinite;
+}
+
+.animate-bounce {
+  animation: bounceSoft 1.5s ease-in-out infinite;
+  display: inline-block;
+}
+
+.animate-spin-slow {
+  animation: spinSlow 30s linear infinite;
+}
+
+.animate-ping-slow {
+  animation: pingSlow 3s ease-in-out infinite;
+}
+
+.typewriter {
+  overflow: hidden;
+  white-space: nowrap;
+  animation: writeText 3s steps(40, end);
+}
+
+.bg-size-200 {
+  background-size: 200% 100%;
+}
+
+/* ============================================
+   SCROLLBAR PERSONALIZADA
+   ============================================ */
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #fce4ec;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #ec4899, #ef4444);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #db2777, #dc2626);
+}
+
+/* Firefox scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #ec4899 #fce4ec;
+}
+
+/* ============================================
+   SELECCIÓN DE TEXTO
+   ============================================ */
+
+::selection {
+  background: #ec4899;
+  color: white;
+}
+
+::-moz-selection {
+  background: #ec4899;
+  color: white;
+}
+
+/* ============================================
+   OPTIMIZACIONES DE RENDIMIENTO
+   ============================================ */
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img, video, canvas {
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Aceleración GPU para animaciones */
+.animate-float-heart,
+.animate-bounce,
+.animate-spin-slow {
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* ============================================
+   LAYOUT Y CONTENEDORES
+   ============================================ */
+
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+body {
+  overflow-x: hidden;
+  background: linear-gradient(135deg, #fce4ec 0%, #fbcfe8 50%, #fce7f3 100%);
+  background-attachment: fixed;
+}
+
+#root {
+  position: relative;
+  isolation: isolate;
+}
+
+/* ============================================
+   CONTENEDORES ESPECÍFICOS
+   ============================================ */
+
+/* Contenedor de fondo fijo */
+.bg-fixed-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Contenedor de partículas */
+.particles-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Contenedor de corazones flotantes */
+.floating-hearts-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 5;
+}
+
+/* Contenido principal */
+.main-content {
+  position: relative;
+  z-index: 10;
+}
+
+/* ============================================
+   COMPONENTES ESPECÍFICOS
+   ============================================ */
+
+/* Botón de música */
+.music-btn {
+  position: fixed !important;
+  bottom: 20px !important;
+  right: 20px !important;
+  width: 50px !important;
+  height: 50px !important;
+  border-radius: 50% !important;
+  background: white !important;
+  backdrop-filter: blur(10px) !important;
+  border: none !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15) !important;
+  cursor: pointer !important;
+  font-size: 24px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  z-index: 9999 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  transition: all 0.3s ease !important;
+}
+
+.music-btn:hover {
+  transform: scale(1.1) !important;
+  box-shadow: 0 4px 20px rgba(236, 72, 153, 0.4) !important;
+}
+
+/* ============================================
+   EFECTOS VISUALES
+   ============================================ */
+
+/* Efecto glassmorphism */
+.glass-effect {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 1rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+/* Efecto de brillo */
+.glow-pink {
+  box-shadow: 0 0 20px rgba(236, 72, 153, 0.4);
+}
+
+.glow-red {
+  box-shadow: 0 0 20px rgba(239, 68, 68, 0.4);
+}
+
+/* ============================================
+   CLASES DE UTILIDAD GENERAL
+   ============================================ */
+
+.smooth-transition {
+  transition: all 0.3s ease-in-out;
+}
+
+.pointer-events-none {
+  pointer-events: none;
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
+.cursor-glow {
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.cursor-glow:hover {
+  filter: drop-shadow(0 0 8px rgba(236, 72, 153, 0.6));
+}
+
+/* ============================================
+   RESPONSIVE AJUSTES
+   ============================================ */
+
+@media (max-width: 768px) {
+  .music-btn {
+    width: 45px !important;
+    height: 45px !important;
+    font-size: 20px !important;
+    bottom: 15px !important;
+    right: 15px !important;
+  }
+  
+  .glass-card {
+    margin: 1rem;
+  }
+}
+
+/* ============================================
+   PREVENCIÓN DE PROBLEMAS COMUNES
+   ============================================ */
+
+/* Evitar que elementos fijos causen scroll */
+.fixed {
+  position: fixed;
+}
+
+/* Asegurar que los modales estén por encima */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+}
+
+/* Prevenir rebotes en iOS */
+body {
+  position: relative;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Mejorar legibilidad */
+p, h1, h2, h3, h4, button {
+  text-rendering: optimizeLegibility;
+}
